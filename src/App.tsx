@@ -150,7 +150,7 @@ export default function App() {
 
       <main id="main">
         {/* 3. Hero (Ultra-Premium Aesthetic with 3D Touches) */}
-        <section className="relative min-h-[90vh] flex items-center pt-24 pb-24 overflow-hidden [perspective:1200px] bg-slate-900">
+        <section className="relative min-h-screen lg:min-h-[90vh] flex items-center pt-16 pb-16 lg:pt-24 lg:pb-24 overflow-hidden [perspective:1200px] bg-slate-900">
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
             <motion.div
@@ -175,7 +175,7 @@ export default function App() {
             className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/50 rounded-full blur-[120px] mix-blend-screen pointer-events-none"
           />
 
-          <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[1.2fr,1fr] gap-12 items-center relative z-10 w-full">
+          <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-[1.2fr,1fr] gap-12 items-center relative z-10 w-full py-8 lg:py-0">
 
             <div className="max-w-2xl">
               <motion.div
