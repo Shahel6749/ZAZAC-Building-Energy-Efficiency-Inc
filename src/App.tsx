@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   PhoneCall,
@@ -26,6 +26,16 @@ import {
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide navbar when within the hero (top 80px), show it after
+      setScrolled(window.scrollY > 80);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const phoneDisplay = "403-926-2549";
   const phoneTel = "tel:4039262549";
@@ -70,8 +80,17 @@ export default function App() {
         Skip to main content
       </a>
 
-      {/* 2. Navigation */}
-      <header className="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+      {/* 2. Navigation - Scroll-Aware */}
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{
+          y: scrolled ? 0 : -100,
+          opacity: scrolled ? 1 : 0,
+          pointerEvents: scrolled ? 'auto' : 'none',
+        }}
+        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="fixed top-0 w-full z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-sm"
+      >
         <div className="max-w-7xl mx-auto px-4 h-20 sm:h-24 flex items-center justify-between">
           <a href="#main" className="flex-shrink-0" aria-label="ZAZAC Homepage">
             <img src="/zazac-logo.png" alt="ZAZAC Building Energy Efficiency Inc." loading="eager" className="h-12 sm:h-16 lg:h-[4.5rem] w-auto object-contain" />
@@ -127,9 +146,9 @@ export default function App() {
             </motion.div>
           )}
         </AnimatePresence>
-      </header>
+      </motion.header>
 
-      <main id="main" className="pt-20 sm:pt-24">
+      <main id="main">
         {/* 3. Hero (Ultra-Premium Aesthetic with 3D Touches) */}
         <section className="relative min-h-[90vh] flex items-center pt-24 pb-24 overflow-hidden [perspective:1200px] bg-slate-900">
           {/* Background Image with Overlay */}
