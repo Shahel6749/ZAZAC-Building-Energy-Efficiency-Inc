@@ -16,8 +16,6 @@ import {
   BadgeCheck,
   Star,
   ArrowRight,
-  ChevronDown,
-  CheckCircle2,
   Leaf,
   Calendar,
   User,
@@ -28,7 +26,6 @@ import {
 
 export default function App() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const phoneDisplay = "403-926-2549";
   const phoneTel = "tel:4039262549";
